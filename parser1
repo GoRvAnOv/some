@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Threading;
+
+namespace Parser
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = ("https://www.work.ua/jobs-rivne-it/?advs=1");
+            List<IWebElement> title = new List<IWebElement>(driver.FindElements(By.XPath("//h2/a")));
+            List<IWebElement> salary = new List<IWebElement>(driver.FindElements(By.XPath("//div/b")));
+            foreach (IWebElement tit in title)
+            {
+                Console.WriteLine(tit.Text);
+            }
+            driver.Quit();
+            Console.ReadKey();
+        }
+    }
+}
